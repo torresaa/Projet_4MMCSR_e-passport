@@ -34,12 +34,45 @@ Jorge Luis GULFO MONSALVE\titlenote{Electrical student at Universidad del Norte 
 \section{Technical Background}
 
 \subsection{RFID}
+The way the E-passport works is by communicating with a RF reader which emits a wave that feeds 
+the IC contactless chip (as mentioned at \cite{NM12}, because is the only one that meets 
+the ICAO’s requirements) located at the passport which is a Radio Frequency ID (because 
+it is meant to be unique) or tag. Once he is feeded the exchange of information begins but 
+without protection any other RF reader around the passport could scan that information so 
+knowing all those security issues and privacy threats attached to the data exchanged between 
+the e-passport and the reader, the ICAO (International Civil Aviation Organization) , which 
+is the organization that sets all the protocols and standards for the e-passport, has 
+established a set of protocols such as Passive Authentication, Basic Access Control, 
+Active Authentication and Extended Access Control for encrypting the information exchanged 
+between the RFID chip and the reader and keeping the privacy and security of the e-passport holder.
+
+As mentioned at \cite{NM12} the first protocol to treat was PA, which signs the passport with 
+a public key of the issuing country in order to prove the integrity and authenticity of the data.
 
 \subsection{BAC Protocol}
+As mentioned at \cite{CLPS07}, BAC which is a protocol that prevents skimming by encrypting 
+the data with two symmetric keys (K-ENC and K-MAC) that are derived from the holder’s birthdate, 
+the passport’s expiry date and the alphanumeric passport number. Once the reader is authenticated
+by reading those keys an unique session key is generated for accessing the MRZ (Machine Readable Zone) 
+in which all the passport and biometrical information of the holder are contemplated. 
+
+COPIAR IMAGEN DE DOCUMENTO E-PASSPORT GLOBAL TRACEABILITY PAG 6. 
+
+So as we can see at the figure once the reader receives the challenge from the tag, he answers 
+by encrypting E and M with the keys K-ENC and K-MAC so that the reader be able to prove the 
+knowledge of the keys from the reader, when the tag proves the authenticity a session key KS-Seed 
+is generated for later transmit the MRZ data.
 
 \subsection{Ative Authentication}
+As mentioned at \cite{JUAR2005}, in order to prevent cloning the AA protocol was created. 
+This protocol is more an anti-cloning feature because here the passport must prove 
+to the reader that he has a private key as a response to a challenge previously received.
 
 \subsection{Extended Access Control}
+In \cite{NM12} is mentioned that in next generation e-passports EAC has being used 
+instead of BAC because before proceeding with the same steps as BAC he verifies the 
+authenticity of the reader by a certificate validation from the issuing passport’s country, 
+certificate which must be transmitted in a safe way.
 
 %\subsection{Citations}
 %Citations to articles \cite{bowman:reasoning, clark:pct, braams:babel, herlihy:methodology},
@@ -116,6 +149,12 @@ known nationalities would be necessary to use some others commands which is stil
 
 
 \subsection{Cloning}
+As mentioned in 333333, once the reader and the tag have passed BAC, AA is implemented. 
+As it was already mentioned the objective of this protocol is to the prevent cloning, 
+so once the reader sends the challenge to the tag it responds immediately responds 
+with a WAIT message leaving a gap of five seconds which finally are about four seconds 
+because the tag takes approximately one second to perform the private key validation. 
+So a possible scenario (as dictated at 33333) is when somebody (TERMINAR DE CONTAR LA HISTORIA).
 
 \section{Conclusions}
 
