@@ -66,10 +66,54 @@ Netherlands passports if we have a \textit{BAC keys database}. This low entropy 
 when at the of the study they estimate the time to find the \textit{MRZ} in 25h and less than 185ms 
 respectively.
 
-
 \subsection{Traceability}
+\label{subsec:trace}
+
+One of the most serious problem of e-passport is the possibility of trace them, that means that  
+attackers are able to identify a passport that they know before. According to Chothina and Smirnov 
+\cite{CHTOM2010} this is possible because of the wireless lecture system of these 
+\textit{MRTD (Machine Readable Travel Document)}.
+
+The most interesting argument of these authors \cite{CHTOM2010} is that we can identify the passport using the 
+security system that it uses to avoid unauthorized readers: \textit{BAC}. The attacker only need to record 
+(eavesdropping) a session between the passport and an authorized reader (one that has access to MRZ), 
+it can be done from a distance of 25m \cite{02COPA}, and when they come across another passport they send 
+the \textit{\textbf{GET CHALLENGE} message} in order to get a nonce that attacker will answer with the recorded message. 
+Als the \textit{ICAO standard} specify that passports have to answer to all message using \textbf{ISO 7816} error codes, 
+such as \textit{``6A80: Incorrect parameters''} or \textit{``6300: No information given''}, them the answer of passport to 
+recorded message will be useful to identify him because they send an specific message when \textit{MAC check} 
+fail or rise  (french passports) or maybe because the answer time is greater is \textit{MAC check} succeed. 
+In both cases, if \textit{MAC check} is correct we are addressing to the same passport.
+
+All this attack has been made without any victim’s passport contact, and the closest communication 
+(BAC challenge) is possible a 50cm away \cite{CHTOM2010}.
 
 \subsection{Physical-layer Weaknesses}
+All the information that we can extrait from e-passport is a potential threat for the owner or for 
+the national security of the country (expediter or receptionist) but this information is not necessary 
+linked to cryptographic process in \textit{MRTD}, sometimes it is more accessible than we think. This is the 
+case of the attacks to communications protocols in physical layer, maybe useful with all \textit{RFID tags} 
+but when are linked to e-passport the can give us additional information.
+
+First we can talk about Danev, Heydt-Benjalin and Capkun \cite{05DABO2009} work, they have tested their method 
+to identify the manufacturer of RFID smart cards with an equal error rate of 2.43\%. This error rate 
+makes the RFID transponders identification possible in practical situations including e-passports. 
+The attacker only need a recorded signal and then the statistic analysis of spectral features. 
+There are not a lot of RFID manufacturers and, of course, nations have to buy the RFID tag of their 
+e-passports to some of them. If we can determine the manufacturer of the smart card in the passport 
+then we will be closer to identify its nationality. This information will be useful to determine the 
+MRZ as we have seen before \ref{subsec:trace}.
+
+In the other hand, in logical level the communication reader-passport use \textit{Applications Protocol 
+Data Units (APDUs)} which are specify in \textit{ISO 7816} standard. Of course this standard have some status 
+words defined like \textit{“No error (9000)”, “Unknown(6F00)”} and more but the \textit{ICAO} guidelines for 
+e-passports are not specific about the logical response to every command, that is the reason because 
+all nations have the freedom to use the \textit{APDUs} as they want. This liberty to chose the response of 
+logical commands makes possible to Richter, Mostowski and Poll \cite{03HENN} identify the nationality of 
+passport using a set of 7 commands and watching the answer of every passport to them. Ten passports's 
+nationlities have been identified by using this little command set; in order to increase the number of 
+known nationalities would be necessary to use some others commands which is still possible.
+
 
 \subsection{Cloning}
 
