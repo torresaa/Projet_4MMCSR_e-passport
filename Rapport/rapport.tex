@@ -45,7 +45,7 @@ The way the E-passport works is by communicating with a RF reader which emits a 
 the contactless chip located at the passport which is a Radio Frequency ID or tag. Once he is feeded the exchange of information begins but 
 without protection any other RF reader can performs eavesdropping or clone the passport. So, knowing those possibles security issues and privacy threats attached to
 the data exchanged between the e-passport and the reader, the \textbf{ICAO} 
-(\textit{International Civil Aviation Organization}) has 
+has 
 established a set of protocols such as \textit{Passive Authentication} (PA), \textit{Basic Access Control} (BAC), 
 \textit{Active Authentication} (AA) and \textit{Extended Access Control} (EAC) for encrypting the data.
 
@@ -58,16 +58,48 @@ the data with two symmetric keys (KE and KM) that are derived from the passport'
 \textit{MRZ} (Machine Readable Zone) (birthdate, the passport’s expiry date and the alphanumeric 
 passport number). Once the reader is authenticated all the passport information of the holder are contemplated.
 
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.35]{BAC.pdf}
-  \caption{BAC protocol sesion.}
-  \label{fig:fig1}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=0.35]{BAC.pdf}
+%  \caption{BAC protocol sesion.}
+%  \label{fig:fig1}
+%\end{figure}
 
-As we can see at the figure \ref{fig:fig1} once the tag receives the challenge from the reader, he answers 
+\begin{center}
+	\begin{tabular}{p{3.8cm}cp{4.5cm}}
+		\multicolumn{1}{r}{\textbf{Passport}} & &
+        \multicolumn{1}{l}{\textbf{Reader}}\\ 	
+        &$\xleftarrow{ Get\ Challenge }$& \\
+		\multicolumn{1}{r}{$N_T \in{_R \left\{{0,1}\right\}}^{64}$} & & \\               
+		&$\xrightarrow{ N_T }$& \\
+		
+        &&\multicolumn{1}{l}{$N_R,K_R \in{_R \left\{{0,1}\right\}}^{64}$}\\ 
+    \end{tabular}
+	\begin{tabular}{p{2.5cm}cp{3cm}}
+		&$\xleftarrow{\left\{{N_R,N_T,K_R}\right\}_{KE},MAC_{KM}(\left\{{N_R,N_T,K_R}\right\}_{KE})}$& \\
+	\end{tabular}
+	\begin{tabular}{p{3.8cm}cp{1.5cm}}
+		\multicolumn{1}{r}{Verify Mac} & & \\
+		\multicolumn{1}{r}{Verify $N_T$} & & \\				
+		\multicolumn{1}{r}{$K_T \in{_R \left\{{0,1}\right\}}^{64}$} & & \\               		
+	\end{tabular}
+	\begin{tabular}{p{2.5cm}cp{3cm}}		
+		&$\xrightarrow{\left\{{N_T,N_R,K_T}\right\}_{KE},MAC_{KM}(\left\{{N_T,N_R,K_T}\right\}_{KE})}$& \\
+	\end{tabular}
+	\begin{tabular}{p{3.8cm}cp{4.5cm}}
+		&&\multicolumn{1}{r}{Verify Mac}\\
+		&&\multicolumn{1}{r}{Verify $N_R$}\\
+		\multicolumn{1}{r}{$K_{seed} = K_T\oplus{}K_R $} & &
+        \multicolumn{1}{l}{$K_{seed} = K_T\oplus{}K_R $}\\		
+	\end{tabular}
+\end{center}
+
+
+As we can see at the figure 
+%\ref{fig:fig1} 
+once the tag receives the challenge from the reader, he answers 
 by some encrypting information with the keys KE and KM where the reader has to be able to prove the 
-knowledge of the keys from the MRZ. When the tag proves the authenticity, a session key KS-Seed 
+knowledge of the keys from the MRZ. When the tag proves the authenticity, a session key KSeed 
 is generated to encrypt all the communication.
 
 \subsection{Ative Authentication}
