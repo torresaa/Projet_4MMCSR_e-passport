@@ -42,24 +42,19 @@ The remainder of this paper is organized to explain some technical concepts in S
 
 \subsection{RFID}
 The way the E-passport works is by communicating with a RF reader which emits a wave that feeds 
-the contactless chip (as mentioned at \cite{NM12}, because is the only one that meets 
-the ICAO’s requirements) located at passport which is a Radio Frequency ID (because 
-it is meant to be unique) or tag. Once he is feeded the exchange of information begins but 
-without protection of any other around RF reader's eavesdropping, that means someone that could 
-scan that information. So, knowing all possibles security issues and privacy threats attached to
+the contactless chip located at the passport which is a Radio Frequency ID or tag. Once he is feeded the exchange of information begins but 
+without protection any other RF reader can performs eavesdropping or clone the passport. So, knowing those possibles security issues and privacy threats attached to
 the data exchanged between the e-passport and the reader, the \textbf{ICAO} 
-(\textit{International Civil Aviation Organization}) , which 
-is the organization that sets all the protocols and standards for the e-passport, has 
+(\textit{International Civil Aviation Organization}) has 
 established a set of protocols such as \textit{Passive Authentication} (PA), \textit{Basic Access Control} (BAC), 
-\textit{Active Authentication} (AA) and \textit{Extended Access Control} (EAC) for encrypting the information exchanged 
-between the RFID chip and the reader keeping the privacy and security of the e-passport holder.
+\textit{Active Authentication} (AA) and \textit{Extended Access Control} (EAC) for encrypting the data.
 
 As mentioned at \cite{NM12} the first protocol to treat was \textit{PA}, which signs the passport with 
 a public key of the issuing country in order to prove the integrity and authenticity of the data.
 
 \subsection{BAC Protocol}
 As mentioned at \cite{CLPS07}, \textit{BAC} which is a protocol that prevents skimming by encrypting 
-the data with two symmetric keys (K-ENC and K-MAC) that are derived from the passport's  
+the data with two symmetric keys (KE and KM) that are derived from the passport's  
 \textit{MRZ} (Machine Readable Zone) (birthdate, the passport’s expiry date and the alphanumeric 
 passport number). Once the reader is authenticated all the passport information of the holder are contemplated.
 
