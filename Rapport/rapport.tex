@@ -2,19 +2,19 @@
 \usepackage[utf8]{inputenc}
 
 \begin{document}
-\title{E-passport: Security attacks}
+\title{A Taxonomy of Attacks and Defenses on E-passports}
 \subtitle{[State of art]}
 
 \numberofauthors{2} 
 \author{
 \alignauthor
-Aquiles Ricardo TORRES ALVAREZ\titlenote{Electrical student at Universidad del Norte - Colombia. Double major student of Telecommunication at Ensimag - France}\\
+Aquiles Ricardo TORRES ALVAREZ%\titlenote{Electrical student at Universidad del Norte - Colombia. Double major student of Telecommunication at Ensimag - France}\\
        \affaddr{Grenoble INP - ENSIMAG}\\
        \affaddr{Grenoble, Francia}\\
        \email{torresaa@}
 % 2nd. author
 \alignauthor
-Jorge Luis GULFO MONSALVE\titlenote{Electrical student at Universidad del Norte - Colombia. Double major student of Telecommunication at Ensimag - France}\\
+Jorge Luis GULFO MONSALVE%\titlenote{Electrical student at Universidad del Norte - Colombia. Double major student of Telecommunication at Ensimag - France}\\
        \affaddr{Grenoble INP - ENSIMAG}\\
        \affaddr{Grenoble Francia}\\
        \email{gulfomoj@}
@@ -30,8 +30,15 @@ Jorge Luis GULFO MONSALVE\titlenote{Electrical student at Universidad del Norte 
 \keywords{passport, MRT, RFID, ICAO, eavesdropping, BAC, attack, cryptography}
 
 \section{Introduction}
+The use e-passport or \emph{Machine Readable Travel Document} (\textbf{MRTD}) to speed up the immigration process is growing fast. The promise of eliminate fraud by adding cryptographic protection to traditional passport on a \emph{\textbf{RFID}} chip is the main reason.
+The control in borders has been always a defiance for countries because of the compromise of national security therefore the life of millions of people. The \emph{RFID }technology bring up its advantages to help with this problem by carrying the paper readable information and biometrical data in a wireless accessible ship. Additionally, this data is protected by an authentication process to check the truthfulness of passport. Fast, safe and reliable, by far, the best decision. 
+
+Now we know that only “fast” is really true because some attackers have proved that e-passports are not secure and reliable at all as they were originally made for. The \emph{RFID} technology could be the correct once but the regulations of the \emph{International Civil Aviation Organization }(\textbf{ICAO}) for this smart cards have forgot some details. This regulations holes has been used by attackers to find security weaknesses on e-passports.
+
+The remainder of this paper is organized to explain some technical concepts in Section \ref{sec:sec2} and some documented weaknesses of e-passports on Section \ref{sec:sec3}. At Section \ref{sec:sec4} we present our conclusions and some recommendations for the next generations of \emph{MRTD}. 
 
 \section{Technical Background}
+\label{sec:sec2}
 
 \subsection{RFID}
 The way the E-passport works is by communicating with a RF reader which emits a wave that feeds 
@@ -84,8 +91,10 @@ certificate which must be transmitted in a safe way.
 %conference
 
 \section{E-passports Attacks}
+\label{sec:sec3}
 
 \subsection{Cryptographic Weaknesses}
+\label{subsec:crypt}
 As we know, the \textit{Basic Access Control (BAC)} protocol establishes a secured channel between 
 the \textit{RFID} tag and the reader in order to provide confidentiality and integrity to the 
 data communication. \textit{BAC protocol} generates the encryption and authentication keys from the data 
@@ -127,6 +136,7 @@ All this attacks have been made without any victim’s passport contact, and the
 (BAC challenge) is possible a 50cm away \cite{CHTOM2010}.
 
 \subsection{Physical-layer Weaknesses}
+\label{subsec:phy}
 All the information that we can extrait from e-passport is a potential threat for the owner or for 
 the national security of the country (expediter or receptionist) but this information is not necessary 
 linked to cryptographic process in \textit{MRTD}, sometimes it is more accessible than we think. This is the 
@@ -166,10 +176,16 @@ device registers that, passes the BAC and once at AA he replays all messages fro
 reader to and from the true passport all of that in even in less than four seconds.
 
 \section{Conclusions}
+\label{sec:sec4}
+Our revision shows that e-passports have some weaknesses that could make some information accessible. This is an international identification document and all its data compromise the holder and the countries involved. Due to its importance, all efforts to increase the confidentiality of this information is well seen. We present below our conclusions and some recommendations.
 
-%\end{document}  % This is where a 'short' article might terminate
+First, we have seen that most vulnerabilities are due to \emph{ICAO} standard for this technology. This guide is not so specific and give a lot of liberty hence every country implements almost his own version. The \emph{ICAO} have to specify all the interactions (even error messages and response time)  between the passport and the reader for every level of communications (application, logical, physical). Without this regulations, the fragilities of subsections \ref{subsec:trace} and \ref{subsec:phy} will be always there.
 
-HELLLO DFDFDFDFDF~\cite{Chothia10}
+Secondly, we clap the use of \emph{BAC protocol} in order to secure the channel. But will be necessary to change the key derived from \emph{MRZ}. The use of \emph{MRZ} give some additional security to authentify the reader, but the actual information inside has not enough entropy [Subsection \ref{subsec:crypt}] to assure a secure key. Add random alphanumeric information could help.
+
+Finally, the countries must reconsider the use of RFID tag in passports. Until now wireless communication is really the main vulnerability of e-passports. For holders, it is impossible to know when they are transmitting and it can be caused by a distant reader. For countries it is difficult to limit the wave scope and, as we saw, guarantee its confidentiality. A smart card with mandatory contact can be near the transfer rate of RFID and can make the same function.
+
+The invulnerability is the defiance for the next generation of e-passport. Important changes must come because the safety of millions is involved. 
 
 \bibliographystyle{abbrv}
 \bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
