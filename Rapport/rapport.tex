@@ -22,7 +22,7 @@ Jorge Luis GULFO MONSALVE%\titlenote{Electrical student at Universidad del Norte
 
 \maketitle
 \begin{abstract}
-Some years ago, travelers in the world are carrying the new generation of passports: E-passports. This is the traditional passport with a chip \textbf{RFID} (\emph{Radio-Frequency Identification}) that has biometrical information. E-passports are the precursors of the future ID cards that will integrate \emph{RFID} technology. We present a technical background of this technology including the authentication protocols used to secure the data, then we explore some security issues that compromise the privacy of e-passport’s holders.  
+Some years ago, travelers in the world have been carrying the new generation of passports: E-passports. This is the traditional passport with a chip \textbf{RFID} (\emph{Radio-Frequency Identification}) that has biometrical information. E-passports are the precursors of the future ID cards that will integrate \emph{RFID} technology. We present a technical background of this technology including the authentication protocols used to secure the data, then we explore some security issues that compromise the privacy of e-passport’s holders.  
 
 \end{abstract}
 
@@ -30,10 +30,10 @@ Some years ago, travelers in the world are carrying the new generation of passpo
 \keywords{Passport, MRTD, RFID, ICAO, eavesdropping, BAC, attack, cryptography}
 
 \section{Introduction}
-The use e-passport or \emph{Machine Readable Travel Document} (\textbf{MRTD}) to speed up the immigration process is growing fast. The promise of eliminate fraud by adding cryptographic protection to traditional passport on a \emph{\textbf{RFID}} chip is the main reason.
-The control in borders has been always a defiance for countries because of the compromise of national security therefore the life of millions of people. The \emph{RFID }technology bring up its advantages to help with this problem by carrying the paper readable information and biometrical data in a wireless accessible chip. Additionally, this data is protected by an authentication process to check the truthfulness of passport. Fast, safe and reliable, by far, the best decision. 
+The use of e-passport or \emph{Machine Readable Travel Document} (\textbf{MRTD}) to speed up the immigration process is growing fast. The promise of eliminate fraud by adding cryptographic protection to traditional passport on a \emph{\textbf{RFID}} chip is the main reason.
+The control in borders has been always a defiance for countries because of the compromise of national security therefore the life of millions of people. The \emph{RFID }technology brings up its advantages to help with this problem by carrying the paper readable information and biometrical data in a wireless accessible chip. Additionally, this data is protected by an authentication process to check the truthfulness of the passport. Fast, safe and reliable, by far, the best decision. 
 
-Now we know that only “fast” is really true because some attackers have proved that e-passports are not secure and reliable at all as they were originally made for. The \emph{RFID} technology could be the correct once but the regulations of the \emph{International Civil Aviation Organization }(\textbf{ICAO}) for this smart cards have forgot some details. This regulations holes has been used by attackers to find security weaknesses on e-passports.
+Now we know that only “fast” is really true because some attackers have proved that e-passports are not secure and reliable at all as they were originally made for. The \emph{RFID} technology could be the correct one but the regulations of the \emph{International Civil Aviation Organization }(\textbf{ICAO}) for this smart cards have forgotten some details. This regulations holes has been used by attackers to find security weaknesses on e-passports.
 
 The remainder of this paper is organized to explain some technical concepts in Section \ref{sec:sec2} and some documented weaknesses of e-passports on Section \ref{sec:sec3}. At Section \ref{sec:sec4} we present our conclusions and some recommendations for the next generations of \emph{MRTD}. 
 
@@ -42,9 +42,8 @@ The remainder of this paper is organized to explain some technical concepts in S
 
 \subsection{RFID}
 The way the E-passport works is by communicating with a RF reader which emits a wave that feeds 
-the contactless chip located at the passport which is a Radio Frequency ID or tag. Once he is feeded the exchange of information begins but 
-without protection any other RF reader can performs eavesdropping or clone the passport. So, knowing those possibles security issues and privacy threats attached to
-the data exchanged between the e-passport and the reader, the \textbf{ICAO} 
+the contactless RFID chip located at the passport. Once he is feeded the exchange of information begins but 
+without protection any other RF reader can performs eavesdropping or clone the passport. So, knowing those possibles security issues and privacy threats, the \textbf{ICAO} 
 has 
 established a set of protocols such as \textit{Passive Authentication} (PA), \textit{Basic Access Control} (BAC), 
 \textit{Active Authentication} (AA) and \textit{Extended Access Control} (EAC) for encrypting the data.
@@ -53,7 +52,7 @@ As mentioned at \cite{NM12} the first protocol to treat was \textit{PA}, which s
 a public key of the issuing country in order to prove the integrity and authenticity of the data.
 
 \subsection{BAC Protocol}
-As mentioned at \cite{CLPS07}, \textit{BAC} which is a protocol that prevents skimming by encrypting 
+As mentioned at \cite{CLPS07}, \textit{BAC} is a protocol that prevents skimming by encrypting 
 the data with two symmetric keys (KE and KM) that are derived from the passport's  
 \textit{MRZ} (Machine Readable Zone) (birthdate, the passport’s expiry date and the alphanumeric 
 passport number). Once the reader is authenticated all the passport information of the holder are contemplated.
@@ -99,7 +98,7 @@ passport number). Once the reader is authenticated all the passport information 
 
 
 As we can see at the figure 
-%\ref{fig:fig1} 
+\ref{fig:fig1}, 
 once the tag receives the challenge from the reader, he answers 
 by some encrypting information with the keys KE and KM where the reader has to be able to prove the 
 knowledge of the keys from the MRZ. When the tag proves the authenticity, a session key KSeed 
@@ -111,7 +110,7 @@ This protocol is more an anti-cloning feature because here the passport must pro
 to the reader that he has a private key as a response to a challenge previously received.
 
 \subsection{Extended Access Control}
-In \cite{NM12} is mentioned that in next generation e-passports EAC has being used 
+In \cite{NM12} is mentioned that in next generation e-passports EAC is being used 
 instead of BAC because before proceeding with the same steps as BAC he verifies the 
 authenticity of the reader by a certificate validation from the issuing passport’s country, 
 certificate which must be transmitted in a safe way.
@@ -195,15 +194,15 @@ known nationalities would be necessary to use some others commands which is stil
 
 \subsection{Cloning}
 As mentioned in \cite{MHTR07}, once the reader and the tag have passed BAC, AA is implemented. 
-As it was already mentioned the objective of this protocol is to the prevent cloning, 
-so once the reader sends the challenge to the tag it responds immediately responds with a 
+It was already mentioned that the objective of this protocol is to the prevent cloning, 
+so once the reader sends the challenge to the tag it answers immediately with a 
 WAIT message leaving a gap of five seconds which finally are about four seconds because the 
 tag takes approximately one second to perform the private key validation. 
 So a possible scenario (as dictated at \cite{MHTR07}) is when somebody for 
-example at an hotel forgets his passport at the reception, somebody at the reception 
-could have access to the MRZ sends those values to somebody at the border and with a 
-device registers that, passes the BAC and once at AA he replays all messages from the 
-reader to and from the true passport all of that in even in less than four seconds.
+example at an hotel forgets his passport at the reception, someone at the reception 
+could have access to the MRZ and sends those values to another person at a border. That person could registers those values with a 
+device, passes the BAC and once at AA he replays all messages from the 
+reader to and from the true passport all of that in even less than four seconds.
 
 \section{Conclusions}
 \label{sec:sec4}
