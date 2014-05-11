@@ -3,20 +3,20 @@
 
 \begin{document}
 \title{A Taxonomy of Attacks and Defenses on E-passports}
-\subtitle{[State of art]}
+\subtitle{[State of the Art]}
 
 \numberofauthors{2} 
 \author{
 \alignauthor
 Aquiles Ricardo TORRES ALVAREZ\\%\titlenote{Electrical student at Universidad del Norte - Colombia. Double major student of Telecommunication at Ensimag - France}\\
        \affaddr{Grenoble INP - ENSIMAG}\\
-       \affaddr{Grenoble, Francia}\\
+       \affaddr{Grenoble, France}\\
        \email{aquiles-ricardo.torres-alvarez@}\titlenote{@ensimag.grenoble-inp.fr}
 % 2nd. author
 \alignauthor
 Jorge Luis GULFO MONSALVE\\%\titlenote{Electrical student at Universidad del Norte - Colombia. Double major student of Telecommunication at Ensimag - France}\\
        \affaddr{Grenoble INP - ENSIMAG}\\
-       \affaddr{Grenoble Francia}\\
+       \affaddr{Grenoble France}\\
        \email{jorge-luis.gulfo-monsalve@}\titlenote{@ensimag.grenoble-inp.fr}
 }
 
@@ -30,20 +30,20 @@ Some years ago, travelers in the world have been carrying the new generation of 
 \keywords{Passport, MRTD, RFID, ICAO, eavesdropping, BAC, attack, cryptography}
 
 \section{Introduction}
-The use of e-passport or \emph{Machine Readable Travel Document} (\textbf{MRTD}) to speed up the immigration process is growing fast. The promise of eliminate fraud by adding cryptographic protection to traditional passport on a \emph{\textbf{RFID}} chip is the main reason.
+The use of e-passport or \emph{Machine Readable Travel Document} (\textbf{MRTD}) to speed up the immigration process is growing fast. The promise of eliminate fraud by adding cryptographic protection to traditional passport on a \emph{\textbf{RFID}} chip is the main reason of its utilization.
 The control in borders has been always a defiance for countries because of the compromise of national security therefore the life of millions of people. The \emph{RFID }technology brings up its advantages to help with this problem by carrying the paper readable information and biometrical data in a wireless accessible chip. Additionally, this data is protected by an authentication process to check the truthfulness of the passport. Fast, safe and reliable, by far, the best decision. 
 
-Now we know that only “fast” is really true because some attackers have proved that e-passports are not secure and reliable at all as they were originally made for. The \emph{RFID} technology could be the correct one but the regulations of the \emph{International Civil Aviation Organization }(\textbf{ICAO}) for this smart cards have forgotten some details. This regulations holes has been used by attackers to find security weaknesses on e-passports.
+Now we think that only “fast” is really true because we will see how some attackers have proved that e-passports are not secure and reliable at all as they were originally made for. The \emph{RFID} technology could be the correct one but the regulations of the \emph{International Civil Aviation Organization }(\textbf{ICAO}) for this smart cards have forgotten some details. This regulations holes has been used by attackers to find security weaknesses on e-passports.
 
 The remainder of this paper is organized to explain some technical concepts in Section \ref{sec:sec2} and some documented weaknesses of e-passports on Section \ref{sec:sec3}. At Section \ref{sec:sec4} we present our conclusions and some recommendations for the next generations of \emph{MRTD}. 
 
-\section{Technical Background}
+\section{Conceptual Review}
 \label{sec:sec2}
 
 \subsection{RFID}
 The way the E-passport works is by communicating with a RF reader which emits a wave that feeds 
 the contactless RFID chip located at the passport. Once he is feeded the exchange of information begins but 
-without protection any other RF reader can performs eavesdropping or clone the passport. So, knowing those possibles security issues and privacy threats, the \textbf{ICAO} 
+without protection of any other RF reader that can performs eavesdropping or clone the passport. So, knowing those possibles security issues and privacy threats, the \textbf{ICAO} 
 has 
 established a set of protocols such as \textit{Passive Authentication} (PA), \textit{Basic Access Control} (BAC), 
 \textit{Active Authentication} (AA) and \textit{Extended Access Control} (EAC) for encrypting the data.
@@ -52,10 +52,10 @@ As mentioned at \cite{NM12} the first protocol to treat was \textit{PA}, which s
 a public key of the issuing country in order to prove the integrity and authenticity of the data.
 
 \subsection{BAC Protocol}
-As mentioned at \cite{CLPS07}, \textit{BAC} is a protocol that prevents skimming by encrypting 
+\textit{BAC} is a protocol that prevents skimming by encrypting 
 the data with two symmetric keys (KE and KM) that are derived from the passport's  
-\textit{MRZ} (Machine Readable Zone) (birthdate, the passport’s expiry date and the alphanumeric 
-passport number). Once the reader is authenticated all the passport information of the holder are contemplated.
+Machine Readable Zone \textit{MRZ} (birth date, the passport’s expiry date and the alphanumeric 
+passport number) \cite{CLPS07}. Once the reader is authenticated all the passport information is contemplated.
 
 %\begin{figure}
 %  \centering
@@ -92,28 +92,26 @@ passport number). Once the reader is authenticated all the passport information 
 		\multicolumn{1}{r}{$K_{seed} = K_T\oplus{}K_R $} & &
         \multicolumn{1}{l}{$K_{seed} = K_T\oplus{}K_R $}\\		
 	\end{tabular}
-  \caption{BAC protocol sesion.}
+  \caption{BAC protocol session.}
   \label{fig:fig1}
 \end{figure*}
 
 
-As we can see at the figure 
+As we can see at figure 
 \ref{fig:fig1}, 
 once the tag receives the challenge from the reader, he answers 
-by some encrypting information with the keys KE and KM where the reader has to be able to prove the 
-knowledge of the keys from the MRZ. When the tag proves the authenticity, a session key KSeed 
+with some data encrypted with the keys KE and KM. This is in order to prove that the reader knows the keys from the MRZ. When the authenticity is checked, a session key KSeed 
 is generated to encrypt all the communication.
 
-\subsection{Ative Authentication}
-As mentioned at \cite{JUAR2005}, in order to prevent cloning the \textit{AA} protocol was created. 
-This protocol is more an anti-cloning feature because here the passport must prove 
-to the reader that he has a private key as a response to a challenge previously received.
+\subsection{Active Authentication}
+The \textit{AA} protocol was created in order to prevent cloning \cite{JUAR2005}. 
+This protocol is an anti-cloning feature as the passport must prove 
+to the reader that he has a \emph{private} key responding to a challenge previously received.
 
 \subsection{Extended Access Control}
-In \cite{NM12} is mentioned that in next generation e-passports EAC is being used 
-instead of BAC because before proceeding with the same steps as BAC he verifies the 
-authenticity of the reader by a certificate validation from the issuing passport’s country, 
-certificate which must be transmitted in a safe way.
+The next generation of e-passports will use EAC 
+instead of BAC \cite{NM12} because, before proceeding with the same steps of BAC, he verifies the 
+authenticity of the reader by a certificate validation from the issuing passport’s country. Of course, this certificate must be transmitted in a safe way.
 
 %\subsection{Citations}
 %Citations to articles \cite{bowman:reasoning, clark:pct, braams:babel, herlihy:methodology},
@@ -131,14 +129,14 @@ present in passport's \textit {MRZ} (number, expiration, date of birth ) and it 
 that the entropy of this data don’t reach at least the 80 bits suggested and can be worse 
 with simple observations \cite{JUAR2005} \cite{02COPA}.\\
 Liu, Kasper and others \cite{02COPA} had made a complexity analysis of the key space focused on 
-demonstrate the low entropy of \textit{BAC keys} for two main passport’s nationality: Germany, 
-Netherlands but easily extensible to other countries. The low entropy of key is caused 
+demonstrate the low entropy of \textit{BAC keys} for two main passport’s nationalities: German and 
+Dutch, but this is easily extensible to other countries. The low entropy of key is caused 
 first by the use of mainly numeric characters on passport number, 
 second because of the stochastic dependency between passport number and its expiration 
 date, and finally due to dependency of publicly available personal data. The analysis 
 showed that in the best case, we know only public information and issuing state, the 
 entropy reach \textbf {52.8 bits} for the German’s passports but it can fall to \textbf {20.4 bits} for 
-Netherlands passports if we have a \textit{BAC keys database}. This low entropy is more disturbing 
+Dutch's passports if we have a \textit{BAC keys database}. This low entropy is more disturbing 
 when they estimated the time to find the \textit{MRZ} in 25h and less than 185ms 
 respectively.
 
@@ -166,7 +164,7 @@ All this attacks have been made without any victim’s passport contact, and the
 
 \subsection{Physical-layer Weaknesses}
 \label{subsec:phy}
-All the information that we can extrait from e-passport is a potential threat for the owner or for 
+All the information that we can extract from e-passport is a potential threat for the owner or for 
 the national security of the country (expediter or receptionist) but this information is not necessary 
 linked to cryptographic process in \textit{MRTD}, sometimes it is more accessible than we think. This is the 
 case of the attacks to communications protocols in physical layer, maybe useful with all \textit{RFID tags} 
@@ -176,10 +174,10 @@ First we can talk about Danev, Heydt-Benjalin and Capkun \cite{05DABO2009} work,
 to identify the manufacturer of RFID smart cards with an equal error rate of 2.43\%. This error rate 
 makes the RFID transponders identification possible in practical situations including e-passports. 
 The attacker only need a recorded signal and then the statistic analysis of spectral features. 
-There are not a lot of RFID manufacturers and, of course, nations have to buy the RFID tag of their 
+There are not a lot of RFID manufacturers and, of course, nations have to buy the RFID tag for their 
 e-passports to some of them. If we can determine the manufacturer of the smart card in the passport 
 then we will be closer to identify its nationality. This information will be useful to determine the 
-MRZ as we have seen before \ref{subsec:trace}.
+MRZ as we have seen before [subsection \ref{subsec:trace}].
 
 In the other hand, in logical level the communication reader-passport use \textit{Applications Protocol 
 Data Units (APDUs)} which are specified in \textit{ISO 7816} standard. Of course this standard have some status 
@@ -187,8 +185,8 @@ words defined like \textit{“No error (9000)”, “Unknown(6F00)”} and more 
 e-passports are not specific about the logical response to every command, that is the reason why 
 all nations have the freedom to use the \textit{APDUs} as they want. This liberty to chose the response of 
 logical commands makes possible to Richter, Mostowski and Poll \cite{03HENN} identify the nationality of 
-passport using a set of 7 commands and watching the answer of every passport to them. Ten passports's 
-nationlities have been identified by using this little command set; in order to increase the number of 
+passport using a set of 7 commands and watching the answer of every passport to them. Ten passport's 
+nationalities have been identified by using this little command set; in order to increase the number of 
 known nationalities would be necessary to use some others commands which is still possible.
 
 
@@ -196,21 +194,17 @@ known nationalities would be necessary to use some others commands which is stil
 As mentioned in \cite{MHTR07}, once the reader and the tag have passed BAC, AA is implemented. 
 It was already mentioned that the objective of this protocol is to the prevent cloning, 
 so once the reader sends the challenge to the tag it answers immediately with a 
-WAIT message leaving a gap of five seconds which finally are about four seconds because the 
+\emph{WAIT message} leaving a gap of five seconds which finally are about four seconds because the 
 tag takes approximately one second to perform the private key validation. 
-So a possible scenario (as dictated at \cite{MHTR07}) is when somebody for 
-example at an hotel forgets his passport at the reception, someone at the reception 
-could have access to the MRZ and sends those values to another person at a border. That person could registers those values with a 
-device, passes the BAC and once at AA he replays all messages from the 
-reader to and from the true passport all of that in even less than four seconds.
+A possible scene (as dictated at \cite{MHTR07}) is when somebody forgets his passport at an hotel reception. Then, attackers could have access to the \emph{MRZ} and sends those values to false passport holder at a border which registers them in his ID card. The false passport would pass the \emph{BAC} now  and for the \emph{AA} he will be just a link between border's reader and real passport. All the message from the reader are transferred to real passport and vice versa. This process takes less than four seconds.
 
 \section{Conclusions}
 \label{sec:sec4}
 Our revision shows that e-passports have some weaknesses that could make some information accessible. This is an international identification document and all its data compromise the holder and the countries involved. Due to its importance, all efforts to increase the confidentiality of this information is well seen. We present below our conclusions and some recommendations.
 
-First, we have seen that most vulnerabilities are due to \emph{ICAO} standard for this technology. This guide is not so specific and give a lot of liberty hence every country implements almost his own version. The \emph{ICAO} have to specify all the interactions (even error messages and response time)  between the passport and the reader for every level of communications (application, logical, physical). Without this regulations, the fragilities of subsections \ref{subsec:trace} and \ref{subsec:phy} will be always there.
+First, we have seen that most vulnerabilities are due to \emph{ICAO} standard for this technology. This guide is not so specific and give a lot of liberty hence every country implements almost his own version. The \emph{ICAO} have to specify all the interactions (even error messages and response time)  between the passport and the reader for every level of communications (application, logical, physical). Without this regulations, the weaknesses of subsections \ref{subsec:trace} and \ref{subsec:phy} will be always there.
 
-Secondly, we clap the use of \emph{BAC protocol} in order to secure the channel. But will be necessary to change the key derived from \emph{MRZ}. The use of \emph{MRZ} give some additional security to authentify the reader, but the actual information inside has not enough entropy [Subsection \ref{subsec:crypt}] to assure a secure key. Add random alphanumeric information could help.
+Secondly, we clap the use of \emph{BAC protocol} in order to secure the channel. But will be necessary to change the key derived from \emph{MRZ}. The use of \emph{MRZ} give some additional security to authenticate the reader, but the actual information inside has not enough entropy [Subsection \ref{subsec:crypt}] to assure a secure key. Add random alphanumeric information could help.
 
 Finally, the countries must reconsider the use of RFID tag in passports. Until now wireless communication is really the main vulnerability of e-passports. For holders, it is impossible to know when they are transmitting and it can be caused by a distant reader. For countries it is difficult to limit the wave scope and, as we saw, guarantee its confidentiality. A smart card with mandatory contact can be near the transfer rate of RFID and can make the same function.
 
